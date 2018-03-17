@@ -25,23 +25,23 @@
         android:id="@+id/score1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black11"
         android:layout_margin="@dimen/padd_big"
+        android:background="@color/black11"
         android:padding="@dimen/padd_big"
-        android:textSize="@dimen/font_size_c"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textSize="@dimen/font_size_c"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/score2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black11"
         android:layout_margin="@dimen/padd_big"
+        android:background="@color/black11"
         android:padding="@dimen/padd_big"
         android:textColor="@color/blue"
         android:textSize="@dimen/font_size_d"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"

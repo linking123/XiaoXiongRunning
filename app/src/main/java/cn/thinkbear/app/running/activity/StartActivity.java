@@ -11,19 +11,26 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.qindachang.bluetoothle.BluetoothLe;
 
 import java.util.Calendar;
 
 import cn.thinkbear.app.running.App;
 import cn.thinkbear.app.running.R;
+import cn.thinkbear.app.running.base.BaseActivityBlueToothLE;
 
 /**
  * 游戏的开始菜单页，用户可选择难度和退出游戏操作
  *
- * @author ThinkBear
+ * @author Linking
  */
-public class StartActivity extends Activity {
+public class StartActivity extends BaseActivityBlueToothLE {
+
+    public static final String TAG = "StartActivity";
+
     private TextView one = null;
     private TextView two = null;
     private TextView three = null;
@@ -32,15 +39,18 @@ public class StartActivity extends Activity {
     private AnimationDrawable ad = null;
     private MyClickEvent myClickEvent = null;
 
+    //蓝牙对象
+    private BluetoothLe mBluetoothLe;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
-        this.one = (TextView) super.findViewById(R.id.one);
-        this.two = (TextView) super.findViewById(R.id.two);
-        this.three = (TextView) super.findViewById(R.id.three);
-        this.copyRight = (TextView) super.findViewById(R.id.copyRight);
-        this.logo = (ImageView) super.findViewById(R.id.logo);
+        this.one = super.findViewById(R.id.one);
+        this.two = super.findViewById(R.id.two);
+        this.three = super.findViewById(R.id.three);
+        this.copyRight = super.findViewById(R.id.copyRight);
+        this.logo = super.findViewById(R.id.logo);
         this.ad = (AnimationDrawable) this.logo.getBackground();
         this.myClickEvent = new MyClickEvent();
         this.one.setOnClickListener(this.myClickEvent);
@@ -48,6 +58,35 @@ public class StartActivity extends Activity {
         this.three.setOnClickListener(this.myClickEvent);
 
         this.copyRight.setText(super.getString(R.string.copyRight, String.valueOf(Calendar.getInstance().get(Calendar.YEAR))));
+
+        mBluetoothLe = BluetoothLe.getDefault();
+        checkSupport();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+//        //根据TAG注销监听，避免内存泄露
+//        mBluetoothLe.destroy(TAG);
+////        //关闭GATT，只在activity中
+//        mBluetoothLe.close();
+    }
+
+    /**
+     * 检测是否支持蓝牙
+     */
+    public void checkSupport() {
+        //初始检测设备是否支持蓝牙
+        if (!mBluetoothLe.isSupportBluetooth()) {
+            //设备不支持蓝牙
+            Toast.makeText(getApplicationContext(), "很遗憾，您的手机不支持蓝牙4.0及以上，请更换手机后重试", Toast.LENGTH_SHORT).show();
+        } else {
+            if (!mBluetoothLe.isBluetoothOpen()) {
+                //没有打开蓝牙，请求打开手机蓝牙
+                mBluetoothLe.enableBluetooth(this, 666);
+            }
+        }
     }
 
     @Override
