@@ -10,8 +10,12 @@
 ![image](https://github.com/ThinkBear/XiaoXiongRunning/blob/master/.image/2.jpg)
 ![image](https://github.com/ThinkBear/XiaoXiongRunning/blob/master/.image/3.jpg)
 
+# 修改
+
+已加入蓝牙连接，可通过设备传送数据，控制小熊，使其跳跃。
+
 ## 关于
 
-作者：[ThinkBear](https://github.com/ThinkBear) 
+作者：[Linking](https://github.com/linking123) 
 <br>
-邮箱：[787594505@qq.com](mailto:787594505@qq.com)
+邮箱：[w.linkings@gmail.com](mailto:w.linkings@gmail.com)

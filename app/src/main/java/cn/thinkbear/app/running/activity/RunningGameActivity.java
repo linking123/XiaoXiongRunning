@@ -51,6 +51,7 @@ import cn.thinkbear.app.running.interf.BluetoothUUID;
 import cn.thinkbear.app.running.thread.MyRunnable;
 import cn.thinkbear.app.running.utils.ApiLevelHelper;
 import cn.thinkbear.app.running.utils.LocationUtils;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 /**
  * 游戏主界面
@@ -64,6 +65,8 @@ public class RunningGameActivity extends BaseActivityBlueToothLE implements
 
     private SurfaceView main = null;
     private MyRunnable run = null;
+    private MaterialProgressBar progressBar = null;
+    private TextView tvLoading = null;
     private TextView timeStatu = null;
     private TextView gameStatu = null;
     private MyClickEvent myClickEvent = null;
@@ -238,10 +241,14 @@ public class RunningGameActivity extends BaseActivityBlueToothLE implements
                 //读数据
                 mBluetoothLe.readCharacteristic(BluetoothUUID.psServiceUUID, BluetoothUUID.psReadUUID);
 
+                tvLoading.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(), "服务已链接，愉快的玩耍吧！", Toast.LENGTH_SHORT).show();
+
                 try {
                     Thread.sleep(1000);
                     run.setPause(false);
+//                    gameStatu.setText(run.isPause() ? R.string.conti : R.string.pause);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -398,6 +405,8 @@ public class RunningGameActivity extends BaseActivityBlueToothLE implements
     private void doInitView() {
         this.main = super.findViewById(R.id.main);
 
+        this.progressBar = super.findViewById(R.id.progressBar);
+        this.tvLoading = super.findViewById(R.id.tv_loading);
         this.timeStatu = super.findViewById(R.id.timeStatu);
         this.gameStatu = super.findViewById(R.id.gameStatu);
 
@@ -453,9 +462,9 @@ public class RunningGameActivity extends BaseActivityBlueToothLE implements
         this.run.setGameType(this.gameType);//设置好游戏的难度
         new Thread(this.run).start();//开始绘制
         try {
-            Thread.sleep(500);
+            Thread.sleep(100);
             this.run.setPause(true);
-            gameStatu.setText(run.isPause() ? R.string.conti : R.string.pause);
+//            gameStatu.setText(run.isPause() ? R.string.conti : R.string.pause);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

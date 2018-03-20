@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <SurfaceView
-        android:id="@+id/main"
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:layout_weight="1" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <SurfaceView
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            app:mpb_determinateCircularProgressStyle='dynamic'
+            app:mpb_progressStyle="circular" />
+
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="游戏加载中,请稍后"
+            android:textColor="@color/blue88" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
