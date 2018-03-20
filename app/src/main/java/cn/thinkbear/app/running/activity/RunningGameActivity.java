@@ -462,7 +462,7 @@ public class RunningGameActivity extends BaseActivityBlueToothLE implements
         this.run.setGameType(this.gameType);//设置好游戏的难度
         new Thread(this.run).start();//开始绘制
         try {
-            Thread.sleep(100);
+            Thread.sleep(500);
             this.run.setPause(true);
 //            gameStatu.setText(run.isPause() ? R.string.conti : R.string.pause);
         } catch (InterruptedException e) {
