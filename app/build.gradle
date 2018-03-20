@@ -26,4 +26,8 @@ dependencies{
 
     //BluTooth
     compile 'com.qindachang:BluetoothLELibrary:0.7.4'
+
+    //progressBar
+    compile 'me.zhanghai.android.materialprogressbar:library:1.4.1'
+
 }
