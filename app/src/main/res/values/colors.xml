@@ -21,6 +21,7 @@
 
     <!-- 淡蓝色 -->
     <color name="lightblue">#6aa4e5</color>
+    <color name="bottomColor">#aed0f5</color>
     <!-- 蓝色 -->
     <color name="blue">#1176e8</color>
     <!-- 透明蓝色 -->
